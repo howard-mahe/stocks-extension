@@ -1,7 +1,7 @@
 const ExtensionUtils = imports.misc.extensionUtils
 const Me = ExtensionUtils.getCurrentExtension()
 
-const { fetch } = Me.imports.helpers.fetch
+const { fetch } = Me.imports.helpers.fetchImpersonate
 const { SettingsHandler } = Me.imports.helpers.settings
 const { createQuoteSummaryFromYahooData } = Me.imports.services.dto.quoteSummary
 const { createQuoteHistoricalFromYahooData } = Me.imports.services.dto.quoteHistorical
@@ -37,7 +37,7 @@ const ensurePrerequisites = async () => {
     url: COOKIE_URL
   })
 
-  const cookie = cookieResponse.headers.get_one('set-cookie')
+  const cookie = cookieResponse.headers.get('set-cookie')
 
   const crumbResponse = await fetch({
     url: CRUMB_URL,
